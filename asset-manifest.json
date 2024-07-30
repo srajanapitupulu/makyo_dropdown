@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/makyo_dropdown/static/css/main.0b23598e.css",
+    "main.js": "/makyo_dropdown/static/js/main.b5b1892b.js",
+    "static/js/453.ae6931ea.chunk.js": "/makyo_dropdown/static/js/453.ae6931ea.chunk.js",
+    "index.html": "/makyo_dropdown/index.html",
+    "main.0b23598e.css.map": "/makyo_dropdown/static/css/main.0b23598e.css.map",
+    "main.b5b1892b.js.map": "/makyo_dropdown/static/js/main.b5b1892b.js.map",
+    "453.ae6931ea.chunk.js.map": "/makyo_dropdown/static/js/453.ae6931ea.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0b23598e.css",
+    "static/js/main.b5b1892b.js"
+  ]
+}
