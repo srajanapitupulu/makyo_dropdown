@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { clearIcon, searchIcon } from "./svg_helper";
 
 interface DropDownSearchBoxProps {
   savedQuery: string;
@@ -19,15 +20,25 @@ const DropDownSearchBox: React.FC<DropDownSearchBoxProps> = ({
     onSearch(event.target.value);
   };
 
+  const handleClearInput = () => {
+    setQuery("");
+    onSearch("");
+  };
+
   return (
     <div className="search-box">
-      <div className="search-icon">🔍</div>
+      <div className="search-icon">{searchIcon()}</div>
       <input
         type="text"
         value={query == "" ? savedQuery : query}
         onChange={handleSearchInputChange}
         className="search-input"
       />
+      {query && (
+        <button className="clear-icon" onClick={handleClearInput}>
+          {clearIcon()}
+        </button>
+      )}
     </div>
   );
 };

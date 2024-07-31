@@ -38,8 +38,6 @@ const dropdownOptions = [
 const App: React.FC = () => {
   return (
     <div className="app-container">
-      {" "}
-      he k
       <CustomizableDropDown options={dropdownOptions} />
     </div>
   );
