@@ -30,7 +30,7 @@ const DropDownSearchBox: React.FC<DropDownSearchBoxProps> = ({
       <div className="search-icon">{searchIcon()}</div>
       <input
         type="text"
-        value={query == "" ? savedQuery : query}
+        value={query === "" ? savedQuery : query}
         onChange={handleSearchInputChange}
         className="search-input"
       />

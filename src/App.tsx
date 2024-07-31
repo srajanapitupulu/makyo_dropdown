@@ -1,5 +1,5 @@
 import React from "react";
-import CustomizableDropDown from "./CustomizeableDropDown";
+import CustomizableDropDown from "./components/CustomizeableDropDown";
 
 const dropdownOptions = [
   { value: "label long 1", label: "label long 1" },
@@ -38,7 +38,12 @@ const dropdownOptions = [
 const App: React.FC = () => {
   return (
     <div className="app-container">
-      <CustomizableDropDown options={dropdownOptions} />
+      <CustomizableDropDown
+        options={dropdownOptions}
+        search={false}
+        outlined={false}
+        multiselect={false}
+      />
     </div>
   );
 };

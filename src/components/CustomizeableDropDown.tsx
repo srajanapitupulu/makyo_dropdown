@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import DropDownSearchBox from "./DropDownSearchBox";
-import { chevronDownIcon } from "./svg_helper";
+import { chevronDownIcon, clearIcon } from "./svg_helper";
+import "./dropdown.css";
 
 interface Option {
   value: string;
@@ -9,31 +10,23 @@ interface Option {
 
 interface CustomizeableDropDownProps {
   options: Option[];
+  search: boolean;
+  outlined: boolean;
+  multiselect: boolean;
 }
 
 const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
   options,
+  search = false,
+  outlined = false,
+  multiselect = false,
 }) => {
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
-  const [searchEnabled, setSearchEnabled] = useState<boolean>(false);
-  const [multiselectEnabled, setMultiselectEnabled] = useState<boolean>(false);
-  const [outlinedStyleEnabled, setOutlinedStyleEnabled] =
-    useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const searchEnabledParam = params.get("search");
-    const outlinedStyleEnabledParam = params.get("outlined");
-    if (searchEnabledParam) {
-      setSearchEnabled(searchEnabledParam === "true");
-    }
-    if (outlinedStyleEnabledParam) {
-      setOutlinedStyleEnabled(outlinedStyleEnabledParam === "true");
-    }
-
     const handleClickOutside = (event: MouseEvent) => {
       if (
         containerRef.current &&
@@ -92,12 +85,10 @@ const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
   };
 
   return (
-    <div>
+    <div className="app-container">
       <div ref={containerRef} className="multi-select-dropdown">
         <div
-          className={
-            outlinedStyleEnabled ? "dropdown-input-outlined" : "dropdown-input"
-          }
+          className={"dropdown-input " + (outlined && "dropdown-outlined")}
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
           <div className="selected-option-container">
@@ -106,13 +97,13 @@ const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
                 <span key={option.value} className="selected-option">
                   {option.label}
                   <button
-                    className="remove-option"
+                    className="clear-icon grey-color"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleRemoveOption(option);
                     }}
                   >
-                    &#x2297;
+                    {clearIcon()}
                   </button>
                 </span>
               ))
@@ -123,7 +114,7 @@ const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
           <span className="chevron-icon">{chevronDownIcon()}</span>
         </div>
         <div className={dropdownOpen ? "dropdown-container" : ""}>
-          {dropdownOpen && searchEnabled && (
+          {dropdownOpen && search && (
             <DropDownSearchBox
               onSearch={handleSearch}
               savedQuery={inputValue}

@@ -29,8 +29,8 @@ export const clearIcon = () => {
       className="feather feather-x-circle"
     >
       <circle cx="12" cy="12" r="10"></circle>
-      <line x1="9" y1="9" x2="15" y2="15"></line>
-      <line x1="15" y1="9" x2="9" y2="15"></line>
+      <line x1="8" y1="8" x2="16" y2="16"></line>
+      <line x1="16" y1="8" x2="8" y2="16"></line>
     </svg>
   );
 };
