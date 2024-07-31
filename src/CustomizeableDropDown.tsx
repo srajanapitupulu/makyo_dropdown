@@ -17,13 +17,20 @@ const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
   const [inputValue, setInputValue] = useState<string>("");
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
   const [searchEnabled, setSearchEnabled] = useState<boolean>(false);
+  const [multiselectEnabled, setMultiselectEnabled] = useState<boolean>(false);
+  const [outlinedStyleEnabled, setOutlinedStyleEnabled] =
+    useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const searchEnabledParam = params.get("searchEnabled");
+    const searchEnabledParam = params.get("search");
+    const outlinedStyleEnabledParam = params.get("outlined");
     if (searchEnabledParam) {
       setSearchEnabled(searchEnabledParam === "true");
+    }
+    if (outlinedStyleEnabledParam) {
+      setOutlinedStyleEnabled(outlinedStyleEnabledParam === "true");
     }
 
     const handleClickOutside = (event: MouseEvent) => {
@@ -85,7 +92,9 @@ const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
     <div>
       <div ref={containerRef} className="multi-select-dropdown">
         <div
-          className="dropdown-input"
+          className={
+            outlinedStyleEnabled ? "dropdown-input-outlined" : "dropdown-input"
+          }
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
           <div className="selected-option-container">
@@ -100,7 +109,7 @@ const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
                       handleRemoveOption(option);
                     }}
                   >
-                    x
+                    &#x2297;
                   </button>
                 </span>
               ))
@@ -108,9 +117,22 @@ const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
               <span></span>
             )}
           </div>
-          <div className="chevron">&#x25BC;</div>
+          {/* <div className="chevron">&#x2304;</div> */}
+          <svg
+            className="chevron"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fillRule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+            />
+          </svg>
         </div>
-        <div>
+        <div className={dropdownOpen ? "dropdown-container" : ""}>
           {dropdownOpen && searchEnabled && (
             <DropDownSearchBox
               onSearch={handleSearch}
@@ -118,7 +140,7 @@ const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
             />
           )}
           {dropdownOpen && (
-            <div className="dropdown-options">
+            <div>
               {filteredOptions.map((option) => (
                 <div
                   key={option.value}
