@@ -20,8 +20,7 @@ cd makyo_dropdown
 ```
 
 3. **Install Dependencies**
-
-Ensure you have Node.js and npm installed. Install the necessary dependencies:
+   Firstly, ensure you have Node.js and npm installed. Install the necessary dependencies:
 
 ```bash
 npm install
@@ -29,9 +28,10 @@ npm install
 
 ## Running the Application
 
-###To run the application locally:
+### To run the application locally:
 
 1. **Start the Development Server**
+   You can run this command to start the development server.
 
 ```bash
 npm start
@@ -40,8 +40,7 @@ npm start
 This will start the development server and open the application in your default web browser at http://localhost:3000.
 
 2. **Build the Application**
-
-To create a production build:
+   To create a production build:
 
 ```bash
 npm run build
@@ -54,16 +53,14 @@ The build artifacts will be stored in the build directory.
 ### Local Path
 
 1. **Build Your Package**
-
-Navigate to your package directory and build it:
+   Navigate to your package directory and build it:
 
 ```bash
 npm run build
 ```
 
 2. **Link the Package**
-
-Create a symbolic link to your local package:
+   Create a symbolic link to your local package:
 
 ```bash
 npm link
@@ -76,18 +73,17 @@ npm link your-package-name
 ```
 
 2. **Import and Use the Package**
+   In your Create React App project, import and use the component:
 
-In your Create React App project, import and use the component:
-
-```bash
-import React from 'react';
-import { MultiSelectDropdown } from 'your-package-name';
+```javascript
+import React from "react";
+import { MultiSelectDropdown } from "your-package-name";
 
 function App() {
   const options = [
-    { label: 'Option 1', value: 'option1' },
-    { label: 'Option 2', value: 'option2' },
-    { label: 'Option 3', value: 'option3' },
+    { label: "Option 1", value: "option1" },
+    { label: "Option 2", value: "option2" },
+    { label: "Option 3", value: "option3" },
   ];
 
   return (
@@ -104,8 +100,7 @@ export default App;
 ## Git Repository
 
 1. **Add the Repository as a Dependency**
-
-In your Create React App project's package.json, add the package repository URL:
+   In your Create React App project's package.json, add the package repository URL:
 
 ```json
 {
@@ -116,8 +111,7 @@ In your Create React App project's package.json, add the package repository URL:
 ```
 
 2. **Install Dependencies**
-
-Install the package from the Git repository:
+   Install the package from the Git repository:
 
 ```bash
 npm install
@@ -127,15 +121,15 @@ npm install
 
 In your Create React App project, import and use the component:
 
-```bash
-import React from 'react';
-import { MultiSelectDropdown } from 'your-package-name';
+```javascript
+import React from "react";
+import { MultiSelectDropdown } from "your-package-name";
 
 function App() {
   const options = [
-    { label: 'Option 1', value: 'option1' },
-    { label: 'Option 2', value: 'option2' },
-    { label: 'Option 3', value: 'option3' },
+    { label: "Option 1", value: "option1" },
+    { label: "Option 2", value: "option2" },
+    { label: "Option 3", value: "option3" },
   ];
 
   return (
@@ -161,4 +155,4 @@ If you'd like to contribute, please fork the repository and use a feature branch
 
 ## License
 
-This project is licensed under the GPL 3.0 License - see the LICENSE file for details.
+This project is licensed under the GPL 3.0 License - see the [LICENSE](LICENSE) file for details.
