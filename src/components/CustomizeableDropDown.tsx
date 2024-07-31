@@ -98,9 +98,13 @@ const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
           className={"dropdown-input " + (outlined && "dropdown-outlined")}
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
-          {multiselect ? (
-            <div className="selected-option-container">
-              {selectedOptions.length > 0 ? (
+          <div
+            className={
+              "selected-option-container " + (!multiselect && "single-select")
+            }
+          >
+            {selectedOptions.length > 0 ? (
+              multiselect ? (
                 selectedOptions.map((option) => (
                   <span key={option.value} className="selected-option">
                     {option.label}
@@ -116,15 +120,12 @@ const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
                   </span>
                 ))
               ) : (
-                <span>&nbsp;</span>
-              )}
-            </div>
-          ) : (
-            <div className="selected-option-container single-select">
-              {selectedOptions.length > 0 ? selectedOptions[0].label : ""}
-            </div>
-          )}
-
+                selectedOptions[0].label
+              )
+            ) : (
+              <span>&nbsp;</span>
+            )}
+          </div>
           <span className="chevron-icon">{chevronDownIcon()}</span>
         </div>
         <div className={dropdownOpen ? "dropdown-container" : ""}>
