@@ -1,46 +1,164 @@
-# Getting Started with Create React App
+# Makyo Dropdown
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A customizable dropdown component for React app.
+This repository is use for technical project challenge as an application in Makyo.Co.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+To set up this React application, follow these steps:
 
-### `npm start`
+1. **Clone the Repository**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+git clone https://github.com/srajanapitupulu/makyo_dropdown.git
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. **Navigate to the Project Directory**
 
-### `npm test`
+```bash
+cd makyo_dropdown
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. **Install Dependencies**
 
-### `npm run build`
+Ensure you have Node.js and npm installed. Install the necessary dependencies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Running the Application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+###To run the application locally:
 
-### `npm run eject`
+1. **Start the Development Server**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This will start the development server and open the application in your default web browser at http://localhost:3000.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2. **Build the Application**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To create a production build:
 
-## Learn More
+```bash
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The build artifacts will be stored in the build directory.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Using the Package in Create React App
+
+### Local Path
+
+1. **Build Your Package**
+
+Navigate to your package directory and build it:
+
+```bash
+npm run build
+```
+
+2. **Link the Package**
+
+Create a symbolic link to your local package:
+
+```bash
+npm link
+```
+
+Then, in your Create React App project directory:
+
+```bash
+npm link your-package-name
+```
+
+2. **Import and Use the Package**
+
+In your Create React App project, import and use the component:
+
+```bash
+import React from 'react';
+import { MultiSelectDropdown } from 'your-package-name';
+
+function App() {
+  const options = [
+    { label: 'Option 1', value: 'option1' },
+    { label: 'Option 2', value: 'option2' },
+    { label: 'Option 3', value: 'option3' },
+  ];
+
+  return (
+    <div className="App">
+      <h1>MultiSelect Dropdown</h1>
+      <MultiSelectDropdown options={options} enableSearch={true} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+## Git Repository
+
+1. **Add the Repository as a Dependency**
+
+In your Create React App project's package.json, add the package repository URL:
+
+```json
+{
+  "dependencies": {
+    "your-package-name": "git+https://github.com/your-username/your-repo-name.git"
+  }
+}
+```
+
+2. **Install Dependencies**
+
+Install the package from the Git repository:
+
+```bash
+npm install
+```
+
+3. **Import and Use the Package**
+
+In your Create React App project, import and use the component:
+
+```bash
+import React from 'react';
+import { MultiSelectDropdown } from 'your-package-name';
+
+function App() {
+  const options = [
+    { label: 'Option 1', value: 'option1' },
+    { label: 'Option 2', value: 'option2' },
+    { label: 'Option 3', value: 'option3' },
+  ];
+
+  return (
+    <div className="App">
+      <h1>MultiSelect Dropdown</h1>
+      <MultiSelectDropdown options={options} enableSearch={true} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+## Contributing
+
+If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
+
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a pull request.
+
+## License
+
+This project is licensed under the GPL 3.0 License - see the LICENSE file for details.
