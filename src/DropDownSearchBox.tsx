@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 
 interface DropDownSearchBoxProps {
+  savedQuery: string;
   onSearch: (query: string) => void;
 }
 
-const DropDownSearchBox: React.FC<DropDownSearchBoxProps> = ({ onSearch }) => {
+const DropDownSearchBox: React.FC<DropDownSearchBoxProps> = ({
+  savedQuery,
+  onSearch,
+}) => {
   //Searchbox functionalities
   const [query, setQuery] = useState("");
 
@@ -12,12 +16,7 @@ const DropDownSearchBox: React.FC<DropDownSearchBoxProps> = ({ onSearch }) => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setQuery(event.target.value);
-  };
-
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      onSearch(query);
-    }
+    onSearch(event.target.value);
   };
 
   return (
@@ -25,10 +24,8 @@ const DropDownSearchBox: React.FC<DropDownSearchBoxProps> = ({ onSearch }) => {
       <div className="search-icon">🔍</div>
       <input
         type="text"
-        value={query}
+        value={query == "" ? savedQuery : query}
         onChange={handleSearchInputChange}
-        onKeyPress={handleKeyPress}
-        placeholder="search"
         className="search-input"
       />
     </div>

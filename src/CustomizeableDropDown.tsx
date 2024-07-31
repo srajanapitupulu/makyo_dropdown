@@ -41,16 +41,10 @@ const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
     };
   }, []);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-  };
-
   const handleOptionClick = (option: Option) => {
     if (!selectedOptions.find((selected) => selected.value === option.value)) {
       setSelectedOptions([...selectedOptions, option]);
     }
-    setInputValue("");
-    setDropdownOpen(false);
   };
 
   const handleRemoveOption = (option: Option) => {
@@ -60,59 +54,88 @@ const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
   };
 
   const handleSearch = (query: string) => {
-    console.log("Search query:", query);
-    // Implement your search logic here
+    setInputValue(query);
   };
 
   const filteredOptions = options.filter((option) =>
     option.label.toLowerCase().includes(inputValue.toLowerCase())
   );
 
-  return (
-    <div ref={containerRef} className="multi-select-dropdown">
-      <div
-        className="dropdown-input"
-        onClick={() => setDropdownOpen(!dropdownOpen)}
-      >
-        {selectedOptions.map((option) => (
-          <span key={option.value} className="selected-option">
-            {option.label}
-            <button
-              className="remove-option"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleRemoveOption(option);
-              }}
-            >
-              x
-            </button>
+  const highlightedOptionText = (text: string, highlightedText: string) => {
+    const parts = text.split(new RegExp(`(${highlightedText})`, "gi"));
+    return (
+      <span>
+        {parts.map((part, index) => (
+          <span
+            key={index}
+            className={
+              part.toLowerCase() === highlightedText.toLowerCase()
+                ? "highlight"
+                : ""
+            }
+          >
+            {part}
           </span>
         ))}
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="Select..."
-          className="input-box"
-          onClick={(e) => e.stopPropagation()}
-        />
-      </div>
-      {dropdownOpen && searchEnabled && (
-        <DropDownSearchBox onSearch={handleSearch} />
-      )}
-      {dropdownOpen && (
-        <div className="dropdown-options">
-          {filteredOptions.map((option) => (
-            <div
-              key={option.value}
-              className="dropdown-option"
-              onClick={() => handleOptionClick(option)}
-            >
-              {option.label}
-            </div>
-          ))}
+      </span>
+    );
+  };
+
+  return (
+    <div>
+      <div ref={containerRef} className="multi-select-dropdown">
+        <div
+          className="dropdown-input"
+          onClick={() => setDropdownOpen(!dropdownOpen)}
+        >
+          <div className="selected-option-container">
+            {selectedOptions.length > 0 ? (
+              selectedOptions.map((option) => (
+                <span key={option.value} className="selected-option">
+                  {option.label}
+                  <button
+                    className="remove-option"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRemoveOption(option);
+                    }}
+                  >
+                    x
+                  </button>
+                </span>
+              ))
+            ) : (
+              <span></span>
+            )}
+          </div>
+          <div className="chevron">&#x25BC;</div>
         </div>
-      )}
+        <div>
+          {dropdownOpen && searchEnabled && (
+            <DropDownSearchBox
+              onSearch={handleSearch}
+              savedQuery={inputValue}
+            />
+          )}
+          {dropdownOpen && (
+            <div className="dropdown-options">
+              {filteredOptions.map((option) => (
+                <div
+                  key={option.value}
+                  className={
+                    selectedOptions.includes(option)
+                      ? "dropdown-option-selected"
+                      : "dropdown-option"
+                  }
+                  onClick={() => handleOptionClick(option)}
+                >
+                  {highlightedOptionText(option.label, inputValue)}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

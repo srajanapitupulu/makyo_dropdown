@@ -14,15 +14,19 @@ code {
 
 .multi-select-dropdown {
   position: relative;
-  width: 300px;
+  width: 100%;
 }
 
 .dropdown-input {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   border: 1px solid #ccc;
   padding: 5px;
   cursor: pointer;
+}
+
+.selected-option-container {
+  display: flex;
 }
 
 .selected-option {
@@ -56,34 +60,40 @@ code {
   border: 1px solid #ccc;
   background: white;
   z-index: 1000;
-  max-height: 200px;
+  max-height: 300px;
   overflow-y: auto;
 }
 
 .dropdown-option {
-  padding: 5px;
+  padding: 8px;
   cursor: pointer;
 }
 
 .dropdown-option:hover {
-  background-color: #f0f0f0;
+  background-color: #d3e6f7;
+}
+
+.dropdown-option-selected {
+  padding: 8px;
+  cursor: pointer;
+  background-color: #d3e6f7;
 }
 
 .highlight {
-  background: yellow;
+  background: #4fbb85;
 }
 
 .app-container {
   padding: 20px;
+  background-color: #f9f9f9;
 }
 
 .search-box {
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
   padding: 5px;
-  width: 300px;
 }
 
 .search-icon {
@@ -100,4 +110,10 @@ code {
 
 .search-input::placeholder {
   color: #aaa;
+}
+
+.chevron {
+  font-size: 1em;
+  margin-left: 8px;
+  float: right;
 }
