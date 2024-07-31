@@ -43,10 +43,17 @@ const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
   }, []);
 
   const handleOptionClick = (option: Option) => {
-    if (!selectedOptions.find((selected) => selected.value === option.value)) {
-      setSelectedOptions([...selectedOptions, option]);
+    if (multiselect === true) {
+      if (
+        !selectedOptions.find((selected) => selected.value === option.value)
+      ) {
+        setSelectedOptions([...selectedOptions, option]);
+      } else {
+        handleRemoveOption(option);
+      }
     } else {
-      handleRemoveOption(option);
+      setSelectedOptions([option]);
+      setDropdownOpen(false);
     }
   };
 
@@ -91,26 +98,33 @@ const CustomizeableDropDown: React.FC<CustomizeableDropDownProps> = ({
           className={"dropdown-input " + (outlined && "dropdown-outlined")}
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
-          <div className="selected-option-container">
-            {selectedOptions.length > 0 ? (
-              selectedOptions.map((option) => (
-                <span key={option.value} className="selected-option">
-                  {option.label}
-                  <button
-                    className="clear-icon grey-color"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleRemoveOption(option);
-                    }}
-                  >
-                    {clearIcon()}
-                  </button>
-                </span>
-              ))
-            ) : (
-              <span>&nbsp;</span>
-            )}
-          </div>
+          {multiselect ? (
+            <div className="selected-option-container">
+              {selectedOptions.length > 0 ? (
+                selectedOptions.map((option) => (
+                  <span key={option.value} className="selected-option">
+                    {option.label}
+                    <button
+                      className="clear-icon grey-color"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleRemoveOption(option);
+                      }}
+                    >
+                      {clearIcon()}
+                    </button>
+                  </span>
+                ))
+              ) : (
+                <span>&nbsp;</span>
+              )}
+            </div>
+          ) : (
+            <div className="selected-option-container single-select">
+              {selectedOptions.length > 0 ? selectedOptions[0].label : ""}
+            </div>
+          )}
+
           <span className="chevron-icon">{chevronDownIcon()}</span>
         </div>
         <div className={dropdownOpen ? "dropdown-container" : ""}>

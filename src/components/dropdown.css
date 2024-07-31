@@ -32,6 +32,10 @@
   flex-wrap: wrap;
 }
 
+.single-select {
+  padding: 5px;
+}
+
 .selected-option {
   background-color: #e4e4e4;
   border-radius: 40px;
