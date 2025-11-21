@@ -69,7 +69,7 @@ npm link
 Then, in your Create React App project directory:
 
 ```bash
-npm link your-package-name
+npm link makyo_dropdown
 ```
 
 2. **Import and Use the Package**
@@ -77,7 +77,7 @@ npm link your-package-name
 
 ```javascript
 import React from "react";
-import { MultiSelectDropdown } from "your-package-name";
+import { MultiSelectDropdown } from "makyo_dropdown";
 
 function App() {
   const options = [
@@ -105,7 +105,7 @@ export default App;
 ```json
 {
   "dependencies": {
-    "your-package-name": "git+https://github.com/your-username/your-repo-name.git"
+    "makyo_dropdown": "git+https://github.com/srajanapitupulu/makyo_dropdown.git"
   }
 }
 ```
@@ -123,7 +123,7 @@ In your Create React App project, import and use the component:
 
 ```javascript
 import React from "react";
-import { MultiSelectDropdown } from "your-package-name";
+import { MultiSelectDropdown } from "makyo_dropdown";
 
 function App() {
   const options = [
